@@ -10,7 +10,6 @@ namespace ChallengeSimpleDarts
     {
         //num of players
         private List<Player> players;
-        private bool winner = false;
         private Dart dart;
         private Random rand = new Random();
         private const int MAX_SCORE = 300;
@@ -47,7 +46,6 @@ namespace ChallengeSimpleDarts
 
         public string GetGameResults()
         {
-            int highestScore = 0;
             for(int i = 0; i < players.Count; i++)
             {
                 this.gameResults += String.Format("{0}: {1} <br />", players[i].Name, players[i].Score.ToString());
