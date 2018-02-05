@@ -13,6 +13,7 @@ namespace ChallengeSimpleDarts
         private Dart dart;
         private Random rand = new Random();
         private const int MAX_SCORE = 300;
+        private const int MAX_DARTS_PER_TURN = 3;
         private string gameResults;
 
         public Game(int numOfPlayers)
@@ -32,13 +33,16 @@ namespace ChallengeSimpleDarts
             {
                 for(int i = 0; i < players.Count; i++)
                 {
-                    dart.Throw();
-                    players[i].Score += Score.CalculateScore(dart.getScore(), dart.getScoreMultiplier());
-
-                    //keep track of highet score
-                    if(highestScore < players[i].Score)
+                    for(int j = 0; j < MAX_DARTS_PER_TURN; j++)
                     {
-                        highestScore = players[i].Score;
+                        dart.Throw();
+                        players[i].Score += Score.CalculateScore(dart.getScore(), dart.getScoreMultiplier());
+
+                        //keep track of highet score
+                        if (highestScore < players[i].Score)
+                        {
+                            highestScore = players[i].Score;
+                        }
                     }
                 }
             }
